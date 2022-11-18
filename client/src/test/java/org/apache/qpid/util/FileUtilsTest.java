@@ -28,6 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Properties;
 
@@ -194,7 +195,7 @@ public class FileUtilsTest extends QpidTestCase
      */
     private File createTestFileInTmpDir(final String testData) throws Exception 
     {
-        final File tmpFile = File.createTempFile("test", "tmp");
+        final File tmpFile = Files.createTempFile("test", "tmp").toFile();
         
         return createTestFile(tmpFile.getCanonicalPath(), testData);
     }
@@ -634,7 +635,7 @@ public class FileUtilsTest extends QpidTestCase
      */
     public void testSearchSucceed() throws IOException
     {
-        File _logfile = File.createTempFile("FileUtilsTest-testSearchSucceed", ".out");
+        File _logfile = Files.createTempFile("FileUtilsTest-testSearchSucceed", ".out").toFile();
 
         prepareFileForSearchTest(_logfile);
 
@@ -653,7 +654,7 @@ public class FileUtilsTest extends QpidTestCase
      */
     public void testSearchFail() throws IOException
     {
-        File _logfile = File.createTempFile("FileUtilsTest-testSearchFail", ".out");
+        File _logfile = Files.createTempFile("FileUtilsTest-testSearchFail", ".out").toFile();
 
         prepareFileForSearchTest(_logfile);
 

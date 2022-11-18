@@ -24,7 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
+import java.nio.file.Files;
 import java.io.FileOutputStream;
 
 import junit.framework.TestCase;
@@ -79,7 +79,7 @@ public class TestFileUtils
         File tmpFile;
         try
         {
-            tmpFile = File.createTempFile(prefix, suffix);
+            tmpFile = Files.createTempFile(prefix, suffix).toFile();
             tmpFile.deleteOnExit();
         }
         catch (IOException e)

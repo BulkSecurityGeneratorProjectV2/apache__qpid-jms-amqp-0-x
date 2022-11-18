@@ -24,6 +24,7 @@ package org.apache.qpid.jndi;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Hashtable;
 import java.util.Properties;
 
@@ -112,7 +113,7 @@ public class PropertiesFileInitialContextFactoryTest extends QpidTestCase
         properties.put("connectionfactory.qpidConnectionfactory", CONNECTION_URL);
         properties.put("destination.topicExchange", "ADDR:destName");
 
-        File f = File.createTempFile(getTestName(), ".properties");
+        File f = Files.createTempFile(getTestName(), ".properties").toFile();
         try
         {
             createJndiPropertiesFile(properties, f);
@@ -143,7 +144,7 @@ public class PropertiesFileInitialContextFactoryTest extends QpidTestCase
         Properties properties = new Properties();
         properties.put("connectionfactory.qpidConnectionfactory", CONNECTION_URL);
 
-        File f = File.createTempFile(getTestName(), ".properties");
+        File f = Files.createTempFile(getTestName(), ".properties").toFile();
         try
         {
             createJndiPropertiesFile(properties, f);
@@ -168,7 +169,7 @@ public class PropertiesFileInitialContextFactoryTest extends QpidTestCase
     {
         Hashtable environment = new Hashtable();
         // Make sure the filename does not exist
-        File f = File.createTempFile(getTestName(), ".properties");
+        File f = Files.createTempFile(getTestName(), ".properties").toFile();
         f.delete();
 
         environment.put(Context.PROVIDER_URL, f.getAbsolutePath());
